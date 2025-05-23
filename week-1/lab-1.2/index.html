@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description"	content="A webpage about the increase in pet ownership in Australia during the COVID-19 pandemic and its positive impacts."/>
+    <meta name="keywords"		  content="HTML, CSS, Pets, Pandemic, COVID-19, Australia"/>
+    <meta name="author"			  content="Nguyen Xuan Duy Thai"/>
+    <title>Pets and the Pandemic: A Look at Australian Pet Ownership</title>
+    <!-- Data Visualisation Exercise - COVID-19 Pet Ownership -->
+
+    <style>
+        :root {
+            --primary: #4e8cff;
+            --secondary: #f9fafc;
+            --accent: #ffb347;
+            --text: #222;
+            --muted: #666;
+            --card-bg: #fff;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --radius: 14px;
+        }
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f9fafc 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        header, article, footer {
+            background-color: var(--card-bg);
+            padding: 2rem 2.5rem;
+            margin: 2rem auto;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 800px;
+        }
+        header {
+            border-bottom: 4px solid var(--primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.3em;
+            letter-spacing: 1px;
+        }
+        h2 {
+            color: var(--accent);
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 0.5em;
+        }
+        p {
+            margin-bottom: 1.2em;
+            font-size: 1.1rem;
+        }
+        ul {
+            margin-bottom: 1.2em;
+            list-style-type: disc;
+            padding-left: 1.5em;
+            font-size: 1.08rem;
+        }
+        figure {
+            margin: 2em auto;
+            text-align: center;
+        }
+        .plotly-embed {
+            margin: 2em auto;
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            min-height: 400px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            background: var(--secondary);
+            padding: 1em;
+        }
+        figcaption {
+            font-style: italic;
+            color: var(--muted);
+            margin-top: 0.5em;
+            font-size: 0.98em;
+        }
+        img[id=table_photo] {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 2%;
+            flex-wrap: wrap;
+            margin-bottom: 1.5em;
+        }
+        .image-gallery img {
+            width: 30%;
+            min-width: 160px;
+            max-width: 220px;
+            margin: 0.5em 0;
+            border: 2px solid var(--secondary);
+            background: var(--secondary);
+            transition: box-shadow 0.2s, border 0.2s;
+        }
+        .image-gallery img:hover {
+            box-shadow: 0 4px 16px rgba(78,140,255,0.15);
+            border: 2px solid var(--primary);
+        }
+        #chart-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-bottom: 1em;
+        }
+        #dynamic-chart-figure {
+            margin: 2em auto;
+            text-align: center;
+        }
+        .hidden {
+            display: none !important;
+        }
+        footer {
+            text-align: center;
+            font-size: 1em;
+            color: var(--muted);
+            margin-top: 2em;
+            background: none;
+            box-shadow: none;
+            padding: 1.2em 0 0.5em 0;
+        }
+        @media (max-width: 900px) {
+            header, article, footer {
+                max-width: 98vw;
+                padding: 1.2rem 0.7rem;
+            }
+            .plotly-embed {
+                max-width: 98vw;
+            }
+            .image-gallery img {
+                width: 45%;
+            }
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.1rem; }
+            .image-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+            .image-gallery img {
+                width: 80%;
+                max-width: 320px;
+            }
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Pets and the Pandemic</h1>
+        <h2>How COVID-19 Changed Pet Ownership in Australia</h2>
+    </header>
+
+    <article>
+        <p>A report from Animal Medicines Australia (AMA) has found that many Australians took the opportunity to introduce a pet into their household during the pandemic. Their survey indicated that there was a significant increase in the percent of households taking in a new dog, fish or bird.</p>
+
+		<figure>
+			<img id=table_photo src="pet_ownership_in_australia_table.png" alt="Table showing pet ownership statistics in Australia for 2019 and 2021">
+			<figcaption>
+				Pet ownership trends in Australia (2019 vs 2021). <br>
+				Source: <a href="https://animalmedicinesaustralia.org.au/wp-content/uploads/2021/08/AMAU005-PATP-Report21_v1.41_WEB.pdf" target="_blank">Animal Medicines Australia - Pets and the Pandemic Report 2021</a>
+			</figcaption>
+		</figure>
+
+        <p>Their research also indicated that pets had a number of positive influences on their lives such as:</p>
+        <ul>
+            <li>Companionship</li>
+            <li>Better mental health</li>
+            <li>Joy and happiness.</li>
+        </ul>
+
+        <!-- Chart Controls and Dynamic Chart Display -->
+        <div id="chart-controls">
+            <button id="btn2019" aria-label="Show 2019 pet ownership data">2019 Data</button>
+            <button id="btn2021" aria-label="Show 2021 pet ownership data">2021 Data</button>
+            <button id="btnBoth" aria-label="Show comparison of 2019 and 2021 pet ownership data">Compare 2019 & 2021</button>
+        </div>
+
+        <figure id="dynamic-chart-figure">
+            <iframe id="iframe2019" class="plotly-embed" src="pet_ownership_2019.html" width="100%" height="480" style="border:none; border-radius:8px;" title="Pet Ownership in Australia 2019"></iframe>
+            <iframe id="iframe2021" class="plotly-embed hidden" src="pet_ownership_2021.html" width="100%" height="480" style="border:none; border-radius:8px;" title="Pet Ownership in Australia 2021"></iframe>
+            <iframe id="iframeBoth" class="plotly-embed hidden" src="pet_ownership_2019_2021.html" width="100%" height="480" style="border:none; border-radius:8px;" title="Pet Ownership in Australia 2019 vs 2021"></iframe>
+        </figure>
+        <!-- End Chart Controls and Dynamic Chart Display -->
+
+        <p>With the increase in pet ownership the AMA are encouraging policy makers to consider the needs of companion animals and their owners when considering rental, strata and body corporate regulations are well as accepting animals in public places and transport.</p>
+
+        <div class="image-gallery">
+            <img src="dog.png" alt="A happy dog">
+            <img src="cat.jpg" alt="A curious cat">
+            <img src="fish.jpg" alt="Colorful fish in an aquarium">
+        </div>
+    </article>
+
+    <footer>COS30045 Data Visualisation - Exercise 1.1</footer>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const iframe2019 = document.getElementById('iframe2019');
+            const iframe2021 = document.getElementById('iframe2021');
+            const iframeBoth = document.getElementById('iframeBoth');
+
+            const btn2019 = document.getElementById('btn2019');
+            const btn2021 = document.getElementById('btn2021');
+            const btnBoth = document.getElementById('btnBoth');
+
+            function showIframe(which) {
+                iframe2019.classList.add('hidden');
+                iframe2021.classList.add('hidden');
+                iframeBoth.classList.add('hidden');
+                if (which === '2019') iframe2019.classList.remove('hidden');
+                if (which === '2021') iframe2021.classList.remove('hidden');
+                if (which === 'both') iframeBoth.classList.remove('hidden');
+            }
+
+            btn2019.addEventListener('click', function() { showIframe('2019'); });
+            btn2021.addEventListener('click', function() { showIframe('2021'); });
+            btnBoth.addEventListener('click', function() { showIframe('both'); });
+
+            // Show 2019 chart by default
+            showIframe('2019');
+        });
+    </script>
+</body>
+</html>
